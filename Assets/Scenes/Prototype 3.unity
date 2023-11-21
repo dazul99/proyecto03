@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641228, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -303,7 +303,7 @@ Transform:
   m_GameObject: {fileID: 534669902}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 4, z: -15}
+  m_LocalPosition: {x: 3.8, y: 4, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -459,6 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 846a03ba44cdc4d66a937915f8d02325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
 --- !u!1 &2014335011
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,7 +594,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43eb4114aa56144cd86c7fd541f746b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 27620602954853229, guid: 4f5777bf29c3f4bf9ba7600a249f2d2e, type: 3}
+  obstacle:
+  - {fileID: 27620602954853229, guid: 4f5777bf29c3f4bf9ba7600a249f2d2e, type: 3}
+  - {fileID: 3067060850054883437, guid: 3ed3c426170a4fc4184c8fb54e97bfc4, type: 3}
+  - {fileID: 5575933683092308581, guid: 25b6c0734dd9f47b6b322963b44d51cf, type: 3}
 --- !u!4 &2147232992
 Transform:
   m_ObjectHideFlags: 0

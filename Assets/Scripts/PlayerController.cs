@@ -6,15 +6,17 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRigidbody; // = null
-    private float forceMagnitude = 10f;
+    private float forceMagnitude = 8f;
     
     private bool isOnTheGround;
+    public bool isGameOver;
 
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
 
         isOnTheGround = true;
+        isGameOver = false;
     }
 
     private void Update()
@@ -24,6 +26,7 @@ public class PlayerController : MonoBehaviour
             playerRigidbody.AddForce(Vector3.up * forceMagnitude, 
                 ForceMode.Impulse);
             isOnTheGround = false;
+            
         }
     }
 
@@ -32,6 +35,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnTheGround = true;
+        }
+        else if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Game Over");
+            isGameOver = true;
         }
     }
 }
