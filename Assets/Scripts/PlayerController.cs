@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,23 +12,31 @@ public class PlayerController : MonoBehaviour
     private bool isOnTheGround;
     public bool isGameOver;
 
+    [SerializeField] private ParticleSystem deathParticleSystem;
+    private Animator animator;
+
     private void Awake()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-
+        animator = GetComponent<Animator>();
         isOnTheGround = true;
         isGameOver = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isOnTheGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isOnTheGround && !isGameOver)
         {
-            playerRigidbody.AddForce(Vector3.up * forceMagnitude, 
-                ForceMode.Impulse);
-            isOnTheGround = false;
-            
+            Jump();
         }
+    }
+
+    private void Jump()
+    {
+        playerRigidbody.AddForce(Vector3.up * forceMagnitude,
+                ForceMode.Impulse);
+        isOnTheGround = false;
+        animator.SetTrigger("Jump_trig");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -40,6 +49,10 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Game Over");
             isGameOver = true;
+            animator.SetBool("Death_b", true);
+            int a = Random.Range(1, 3);
+            animator.SetInteger("DeathType_int", a);
+            deathParticleSystem.Play();
         }
     }
 }
